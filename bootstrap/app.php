@@ -67,6 +67,10 @@ $app->singleton(
 //     'auth' => App\Http\Middleware\Authenticate::class,
 // ]);
 
+$app->middleware([
+    \Barryvdh\Cors\HandleCors::class,
+]);
+
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers
@@ -79,6 +83,7 @@ $app->singleton(
 */
 
  $app->register(App\Providers\AppServiceProvider::class);
+$app->register(Barryvdh\Cors\ServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
@@ -92,6 +97,8 @@ $app->singleton(
 | can respond to, as well as the controllers that may handle them.
 |
 */
+
+$app->configure('cors');
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
