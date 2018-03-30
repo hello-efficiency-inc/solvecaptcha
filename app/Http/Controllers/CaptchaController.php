@@ -8,6 +8,26 @@ use Illuminate\Http\Request;
  */
 class CaptchaController extends Controller
 {
+
+    /**
+     * Get Token
+     *
+     * @param $captcha
+     * @return mixed
+     */
+    public function getToken($captcha) {
+
+        $client = new Client([
+            'base_uri' => 'http://api.dbcapi.me/api/',
+            'headers' => [
+                'Accept' => 'application/json'
+            ]
+        ]);
+
+        $response = $client->get('captcha/'.$captcha);
+
+        return json_decode($response->getBody(), true);
+    }
     /**
      * Solve the Captcha from Uber
      *

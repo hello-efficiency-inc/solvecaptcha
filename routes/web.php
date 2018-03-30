@@ -11,6 +11,9 @@
 |
 */
 
+$router->get('gettoken/{captcha}', [
+    'as' => 'gettoken', 'uses' => 'CaptchaController@getToken'
+]);
 $router->post('solvecaptcha', [
     'as' => 'solvecaptcha', 'uses' => 'CaptchaController@solve'
 ]);
