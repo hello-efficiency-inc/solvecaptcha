@@ -46,7 +46,7 @@ class CaptchaController extends Controller
 
         $captcha =  json_decode($data, true)['captcha'];
 
-        sleep(25);
+        sleep(45);
 
         $textImg = $client->get('captcha/'.$captcha, [
             'form_params' => [
