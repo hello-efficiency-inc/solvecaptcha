@@ -66,14 +66,12 @@ class CaptchaController extends Controller
 
         $captcha =  json_decode($data, true)['captcha'];
 
-        // sleep(30);
-        //
-        // $textImg = $client->get('captcha/'.$captcha, [
-        //     'form_params' => [
-        //         'username' => $username,
-        //         'password' => $password
-        //     ]
-        // ]);
+        $textImg = $client->get('captcha/'.$captcha, [
+            'form_params' => [
+                'username' => $username,
+                'password' => $password
+            ]
+        ]);
 
         return json_decode($textImg->getBody(), true);
     }
