@@ -66,7 +66,7 @@ class CaptchaController extends Controller
 
         $captcha =  json_decode($data, true)['captcha'];
 
-        return response()->json($data);
+        return json_decode($data, true);
     }
 
 }
