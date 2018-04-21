@@ -81,9 +81,10 @@ $app->middleware([
 | totally optional, so you are not required to uncomment this line.
 |
 */
-
- $app->register(App\Providers\AppServiceProvider::class);
+$app->configure('services');
+$app->register(App\Providers\AppServiceProvider::class);
 $app->register(Barryvdh\Cors\ServiceProvider::class);
+$app->register(Laravel\Socialite\SocialiteServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 

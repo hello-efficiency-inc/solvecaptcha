@@ -11,6 +11,14 @@
 |
 */
 
+$router->get('login/google', [
+    'as' => 'login.google', 'uses' => 'GoogleController@login'
+]);
+
+$router->get('login/google/callback', [
+    'as' => 'login.google.callback', 'uses' => 'GoogleController@callback'
+]);
+
 $router->get('gettoken/{captcha}', [
     'as' => 'gettoken', 'uses' => 'CaptchaController@getToken'
 ]);
