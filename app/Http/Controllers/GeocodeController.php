@@ -13,7 +13,6 @@ class GeocodeController extends Controller
      * @return
      */
     public function geocode(Request $request) {
-      return "YES";
       $client = new Client([
           'base_uri' => 'https://geocoder.api.here.com/6.2/',
           'headers' => [
@@ -23,7 +22,10 @@ class GeocodeController extends Controller
 
       $appId = env('GEO_APP_ID');
       $appCode = env('GEO_APP_CODE');
-      $response = $client->get('geocode.json', [
+      $response = $client->request(
+        'GET',
+        'geocode.json',
+        [
         'query' => [
           'app_id' => $appId,
           'app_code' => $appCode,
