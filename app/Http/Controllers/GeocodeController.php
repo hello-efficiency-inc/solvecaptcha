@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class GeocodeController extends Controller
 {
@@ -11,8 +12,10 @@ class GeocodeController extends Controller
      *
      * @param Request $request
      * @return
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function geocode(Request $request) {
+      $cacheSlug = str_slug($request->get('address'));
       $client = new Client([
           'base_uri' => 'https://geocoder.api.here.com/6.2/',
           'headers' => [
@@ -32,6 +35,9 @@ class GeocodeController extends Controller
           'searchText' => $request->get('address')
         ]
       ]);
-      return json_decode($response->getBody(), true);
+
+      return Cache::rememberForever($cacheSlug, function () use ($response) {
+          return json_decode($response->getBody(), true);
+      });
     }
 }
