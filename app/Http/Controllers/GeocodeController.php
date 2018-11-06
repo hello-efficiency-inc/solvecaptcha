@@ -13,6 +13,7 @@ class GeocodeController extends Controller
      * @return
      */
     public function geocode(Request $request) {
+      return $request->get('address');
       $client = new Client([
           'base_uri' => 'https://geocoder.api.here.com/6.2/',
           'headers' => [
