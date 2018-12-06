@@ -12,7 +12,10 @@ class GeocodeController extends Controller
     public function license (Request $request)
     {
         $client = new Client([
-            'base_uri' => 'https://api.gumroad.com/v2/'
+            'base_uri' => 'https://api.gumroad.com/v2/',
+            'headers' => [
+                'Accept' => 'application/json'
+            ]
         ]);
 
         $response = $client->request(
