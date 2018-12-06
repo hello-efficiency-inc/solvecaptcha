@@ -20,3 +20,6 @@ $router->post('solvecaptcha', [
 $router->get('geocode', [
   'as' => 'geocode', 'uses' => 'GeocodeController@geocode'
 ]);
+$router->get('license/verify', [
+    'as' => 'license', 'uses' => 'GeocodeController@license'
+]);

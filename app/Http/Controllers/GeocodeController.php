@@ -4,9 +4,28 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class GeocodeController extends Controller
 {
+
+    public function license (Request $request)
+    {
+        $client = new Client([
+            'base_uri' => 'https://api.gumroad.com/v2/'
+        ]);
+
+        $response = $client->request(
+            'POST',
+            'license/verify',
+            [
+                'query' => [
+                    'product_permalink' => $request->get('product_permalink'),
+                    'license_key' => $request->get('license_key')
+                ]
+            ]);
+        return json_decode($response->getBody(), true);
+    }
     /**
      * Login using Google
      *
