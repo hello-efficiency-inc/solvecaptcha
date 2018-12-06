@@ -14,7 +14,8 @@ class GeocodeController extends Controller
         $client = new Client([
             'base_uri' => 'https://api.gumroad.com/v2/',
             'headers' => [
-                'Accept' => 'application/json'
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/x-www-form-urlencoded'
             ]
         ]);
 
